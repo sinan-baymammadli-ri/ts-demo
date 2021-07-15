@@ -1,9 +1,10 @@
 import { factory, primaryKey } from "@mswjs/data";
-import { datatype, lorem } from "faker";
+import { datatype, lorem, name } from "faker";
 
 export const db = factory({
-  todo: {
+  book: {
     id: primaryKey(datatype.uuid),
-    text: lorem.paragraph,
+    title: lorem.words,
+    author: name.findName,
   },
 });

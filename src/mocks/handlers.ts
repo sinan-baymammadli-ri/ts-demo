@@ -1,10 +1,11 @@
 import { db } from "./db";
 import { rest } from "msw";
+import { BookForm } from "../books/data";
 
 const delay = 2000;
 
 export const handlers = [
-  rest.get("/books", (req, res, ctx) => {
+  rest.get("/books", (_, res, ctx) => {
     const books = db.book.getAll();
 
     return res(ctx.delay(delay), ctx.json(books));
@@ -26,13 +27,8 @@ export const handlers = [
     return res(ctx.delay(delay), ctx.json(book));
   }),
 
-  rest.post("/books", (req, res, ctx) => {
-    const { title, author } = req.body as any;
-
-    const book = db.book.create({
-      title,
-      author,
-    });
+  rest.post<BookForm>("/books", (req, res, ctx) => {
+    const book = db.book.create(req.body);
 
     return res(ctx.delay(delay), ctx.json(book));
   }),

@@ -2,12 +2,12 @@ import axios from "axios";
 import { useQuery } from "react-query";
 import { QueryKeys } from "../query-keys";
 
-interface BookForm {
+export interface BookForm {
   title: string;
   author: string;
 }
 
-interface Book extends BookForm {
+export interface Book extends BookForm {
   id: string;
 }
 

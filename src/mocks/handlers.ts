@@ -5,6 +5,12 @@ import { BookForm } from "../books/data";
 const delay = 2000;
 
 export const handlers = [
+  rest.post<BookForm>("/books", (req, res, ctx) => {
+    const book = db.book.create(req.body);
+
+    return res(ctx.delay(delay), ctx.json(book));
+  }),
+
   rest.get("/books", (_, res, ctx) => {
     const books = db.book.getAll();
 
@@ -23,12 +29,6 @@ export const handlers = [
     if (!book) {
       return res(ctx.delay(delay), ctx.status(404));
     }
-
-    return res(ctx.delay(delay), ctx.json(book));
-  }),
-
-  rest.post<BookForm>("/books", (req, res, ctx) => {
-    const book = db.book.create(req.body);
 
     return res(ctx.delay(delay), ctx.json(book));
   }),

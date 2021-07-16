@@ -34,8 +34,8 @@ export function BookCreate() {
       <h1>Create new book</h1>
 
       <form onSubmit={onSubmit}>
-        <input name="title" placeholder="Title" />
-        <input name="author" placeholder="Author" />
+        <input name="title" placeholder="Title" required />
+        <input name="author" placeholder="Author" required />
 
         <button disabled={isLoading}>
           {isLoading ? "Loading.." : "Create"}

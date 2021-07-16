@@ -22,9 +22,10 @@ export function BookCreate() {
 
   function onSubmit(e: React.FormEvent<UsernameFormElement>) {
     e.preventDefault();
+    const inputs = e.currentTarget.elements;
 
-    const title = e.currentTarget.elements.title.value;
-    const author = e.currentTarget.elements.author.value;
+    const title = inputs.title.value;
+    const author = inputs.author.value;
 
     createBook({ title, author });
   }
